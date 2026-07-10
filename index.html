@@ -5,7 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GUSII NIGHT EXPERIENCE - Brimak Hotel, Utawala | July 18, 2026</title>
     <meta name="description" content="Book tickets for GUSII NIGHT EXPERIENCE. Premium event at Brimak Hotel. Pay via M-PESA STK Push or Paystack.">
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎵</text></svg>">
+    <link rel="icon" href="https://pquehgwrmblcddbsoiwb.supabase.co/storage/v1/object/public/wakabupresents/unnamed%20(1).jpg">
+    <meta property="og:image" content="https://pquehgwrmblcddbsoiwb.supabase.co/storage/v1/object/public/wakabupresents/unnamed%20(1).jpg">
+    <meta property="og:title" content="GUSII NIGHT EXPERIENCE">
+    <meta property="og:description" content="Premium event at Brimak Hotel, Utawala. July 18, 2026.">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
@@ -21,7 +24,8 @@
         /* ===== NAVIGATION ===== */
         nav{position:fixed;top:0;left:0;width:100%;z-index:1000;display:flex;justify-content:space-between;align-items:center;padding:0.7rem 5%;background:rgba(13,94,58,0.95);backdrop-filter:blur(10px);border-bottom:3px solid var(--gold);box-shadow:0 4px 20px rgba(0,0,0,0.3)}
         .logo{display:flex;align-items:center;gap:0.6rem;text-decoration:none;flex-shrink:0}
-        .logo-icon{width:38px;height:38px;background:var(--gold);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:1.1rem;color:var(--forest)}
+        .logo-icon{width:45px;height:45px;border-radius:50%;overflow:hidden;border:2px solid var(--gold)}
+        .logo-icon img{width:100%;height:100%;object-fit:cover}
         .logo-text{font-family:var(--f-heading);font-size:0.9rem;font-weight:700;color:var(--white);letter-spacing:1px;text-transform:uppercase}
         .nav-links{display:flex;list-style:none;gap:1.5rem;align-items:center;margin:0;padding:0;flex-wrap:wrap}
         .nav-links a{text-decoration:none;color:var(--white);font-weight:500;font-size:0.8rem;letter-spacing:0.5px;text-transform:uppercase;transition:0.3s;padding:0.4rem 0;position:relative}
@@ -86,11 +90,12 @@
         .cd-item span{display:block;font-family:var(--f-heading);font-size:1.8rem;font-weight:700;color:var(--forest)}.cd-item small{font-size:0.55rem;letter-spacing:2px;color:var(--charcoal);opacity:0.6;text-transform:uppercase}
         .section-title{text-align:center;margin:2rem 0 1rem}.section-title h2{font-family:var(--f-heading);font-size:2.2rem;color:var(--forest);font-weight:700}
         .section-title .divider{width:50px;height:2px;background:var(--gold);margin:0.5rem auto}
-        .pricing{display:grid;grid-template-columns:repeat(2,1fr);gap:1.2rem;max-width:650px;margin:0 auto 2rem;padding:0 1%}
+        .pricing{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1.2rem;max-width:800px;margin:0 auto 2rem;padding:0 1%}
         .pcard{background:var(--white);border:1px solid var(--border);border-radius:12px;padding:2rem 1.5rem;text-align:center;transition:0.3s;cursor:pointer;box-shadow:0 3px 15px rgba(0,0,0,0.04);position:relative;overflow:hidden}
         .pcard:hover{transform:translateY(-5px);box-shadow:0 15px 40px rgba(0,0,0,0.1);border-color:var(--forest)}
         .pcard.selected{border:2px solid var(--forest)!important;background:var(--cream)!important}
         .pcard.premium::after{content:'BEST VALUE';position:absolute;top:12px;right:-28px;background:var(--gold);color:var(--white);padding:0.15rem 2rem;font-size:0.5rem;font-weight:700;letter-spacing:2px;transform:rotate(45deg)}
+        .pcard.vvip::after{content:'EXCLUSIVE';position:absolute;top:12px;right:-28px;background:#8B008B;color:var(--white);padding:0.15rem 2rem;font-size:0.5rem;font-weight:700;letter-spacing:2px;transform:rotate(45deg)}
         .pcard .ticket-icon{font-size:2.5rem;margin-bottom:0.3rem}
         .pcard h3{font-family:var(--f-heading);font-size:1.2rem;color:var(--forest)}
         .pcard .price{font-family:var(--f-heading);font-size:2.5rem;font-weight:800;color:var(--gold);margin:0.3rem 0}
@@ -149,9 +154,6 @@
         .dev-section .wa-btn{display:inline-flex;align-items:center;gap:0.3rem;background:#25D366;color:white!important;padding:0.4rem 1rem;border-radius:6px;text-decoration:none;font-weight:500;font-size:0.7rem;margin:0.2rem;transition:0.3s}
         .dev-section .wa-btn:hover{transform:translateY(-2px)}
         
-        /* ===== PAYSTACK POPUP OVERRIDE ===== */
-        .paystack-iframe{width:100%!important;max-width:500px!important;margin:0 auto!important}
-        
         @media(max-width:768px){
             .hero h1{font-size:2.2rem}
             .pricing{grid-template-columns:1fr}
@@ -203,7 +205,9 @@
     <!-- ===== NAVIGATION ===== -->
     <nav id="navbar">
         <a href="/" class="logo">
-            <div class="logo-icon">🎵</div>
+            <div class="logo-icon">
+                <img src="https://pquehgwrmblcddbsoiwb.supabase.co/storage/v1/object/public/wakabupresents/unnamed%20(1).jpg" alt="WAKABU SOUNDS AND EVENTS">
+            </div>
             <span class="logo-text">GUSII NIGHT</span>
         </a>
         <button class="hamburger" onclick="document.getElementById('navLinks').classList.toggle('open')">☰</button>
@@ -230,8 +234,22 @@
         <div class="countdown-container"><div class="countdown-label">Event Starts In</div><div class="countdown" id="countdown"><div class="cd-item"><span id="cd-d">00</span><small>Days</small></div><div class="cd-item"><span id="cd-h">00</span><small>Hours</small></div><div class="cd-item"><span id="cd-m">00</span><small>Minutes</small></div><div class="cd-item"><span id="cd-s">00</span><small>Seconds</small></div></div></div>
         <div class="section-title"><h2>Select Your Experience</h2><div class="divider"></div></div>
         <div class="pricing">
-            <div class="pcard" data-ticket="Regular" data-price="500"><div><div class="ticket-icon">🎫</div><h3>Regular</h3><div class="price">KSH 500</div><ul><li>General Admission</li><li>Main Arena Access</li></ul></div><button class="btn-pick">Select Regular</button></div>
-            <div class="pcard premium" data-ticket="VIP" data-price="1000"><div><div class="ticket-icon">👑</div><h3>VIP</h3><div class="price">KSH 1,000</div><ul><li>Priority Entry</li><li>VIP Section</li><li>Premium Experience</li></ul></div><button class="btn-pick">Select VIP</button></div>
+            <div class="pcard" data-ticket="Regular" data-price="500">
+                <div><div class="ticket-icon">🎫</div><h3>Regular</h3><div class="price">KSH 500</div><ul><li>General Admission</li><li>Main Arena Access</li></ul></div>
+                <button class="btn-pick">Select Regular</button>
+            </div>
+            <div class="pcard premium" data-ticket="VIP" data-price="1000">
+                <div><div class="ticket-icon">👑</div><h3>VIP</h3><div class="price">KSH 1,000</div><ul><li>Priority Entry</li><li>VIP Section</li><li>Premium Experience</li></ul></div>
+                <button class="btn-pick">Select VIP</button>
+            </div>
+            <div class="pcard vvip" data-ticket="VVIP Single" data-price="3000">
+                <div><div class="ticket-icon">💎</div><h3>VVIP Single</h3><div class="price">KSH 3,000</div><ul><li>Exclusive VVIP Access</li><li>Premium Seating</li><li>Complimentary Drinks</li></ul></div>
+                <button class="btn-pick">Select VVIP Single</button>
+            </div>
+            <div class="pcard vvip" data-ticket="VVIP Couple" data-price="5000">
+                <div><div class="ticket-icon">💕</div><h3>VVIP Couple</h3><div class="price">KSH 5,000</div><ul><li>Exclusive VVIP Access for 2</li><li>Premium Seating</li><li>Complimentary Drinks</li><li>Couple's Special Package</li></ul></div>
+                <button class="btn-pick">Select VVIP Couple</button>
+            </div>
         </div>
         <div id="bookingFormSection" style="display:none;max-width:500px;margin:0 auto">
             <div class="form-card">
@@ -255,7 +273,15 @@
                     <div class="f-group"><label>Full Name *</label><input type="text" id="bName" required placeholder="Enter your full name"></div>
                     <div class="f-group"><label>Phone Number *</label><input type="tel" id="bPhone" required placeholder="e.g., 0712345678"></div>
                     <div class="f-group"><label>Email *</label><input type="email" id="bEmail" required placeholder="For ticket delivery"></div>
-                    <div class="f-group"><label>Ticket</label><select id="bTicket"><option value="">Select...</option><option value="Regular|500">Regular - KSH 500</option><option value="VIP|1000">VIP - KSH 1,000</option></select></div>
+                    <div class="f-group"><label>Ticket</label>
+                        <select id="bTicket">
+                            <option value="">Select...</option>
+                            <option value="Regular|500">Regular - KSH 500</option>
+                            <option value="VIP|1000">VIP - KSH 1,000</option>
+                            <option value="VVIP Single|3000">VVIP Single - KSH 3,000</option>
+                            <option value="VVIP Couple|5000">VVIP Couple - KSH 5,000</option>
+                        </select>
+                    </div>
                     <div class="f-group"><label>Qty</label><input type="number" id="bQty" min="1" max="20" value="1"></div>
                     <div class="sum-box"><div class="s-row bold"><span>Total</span><span id="sumTotal">KSH 0</span></div></div>
                     <button type="submit" class="btn-pay" id="payBtn">📱 Pay via M-PESA</button>
@@ -290,7 +316,15 @@
                 <div class="f-group"><label>Full Name *</label><input type="text" id="bName2" required placeholder="Enter your full name"></div>
                 <div class="f-group"><label>Phone *</label><input type="tel" id="bPhone2" required placeholder="e.g., 0712345678"></div>
                 <div class="f-group"><label>Email *</label><input type="email" id="bEmail2" required placeholder="For ticket delivery"></div>
-                <div class="f-group"><label>Ticket</label><select id="bTicket2"><option value="">Select...</option><option value="Regular|500">Regular - KSH 500</option><option value="VIP|1000">VIP - KSH 1,000</option></select></div>
+                <div class="f-group"><label>Ticket</label>
+                    <select id="bTicket2">
+                        <option value="">Select...</option>
+                        <option value="Regular|500">Regular - KSH 500</option>
+                        <option value="VIP|1000">VIP - KSH 1,000</option>
+                        <option value="VVIP Single|3000">VVIP Single - KSH 3,000</option>
+                        <option value="VVIP Couple|5000">VVIP Couple - KSH 5,000</option>
+                    </select>
+                </div>
                 <div class="f-group"><label>Qty</label><input type="number" id="bQty2" min="1" max="20" value="1"></div>
                 <div class="sum-box"><div class="s-row bold"><span>Total</span><span id="sumTotal2">KSH 0</span></div></div>
                 <button type="submit" class="btn-pay" id="payBtn2">📱 Pay via M-PESA</button>
@@ -305,7 +339,14 @@
     <section class="section" id="page-artists"><div class="page-top"><h2>Performing Artists</h2></div><div id="artistsContainer" style="max-width:1000px;margin:0 auto;padding:0 1rem"><p style="text-align:center;color:#666">Loading artists...</p></div></section>
 
     <!-- INFO PAGE -->
-    <section class="section" id="page-info"><div class="page-top"><h2>Event Information</h2></div><div class="info-grid"><div class="info-card"><div class="info-icon">📍</div><h3>Venue</h3><p>Brimak Hotel, Utawala<br>Opposite Amani Stage</p></div><div class="info-card"><div class="info-icon">📅</div><h3>Date</h3><p>July 18, 2026<br>Gates 6:00 PM</p></div><div class="info-card"><div class="info-icon">🔞</div><h3>Age</h3><p>18+ Only<br>ID Required</p></div><div class="info-card"><div class="info-icon">🎫</div><h3>Tickets</h3><p>Regular KSH 500<br>VIP KSH 1,000</p></div><div class="info-card"><div class="info-icon">📱</div><h3>Payment</h3><p>M-PESA STK Push<br>Paystack</p></div><div class="info-card"><div class="info-icon">🎵</div><h3>By</h3><p>Wakabu Sounds<br>and Events</p></div></div></section>
+    <section class="section" id="page-info"><div class="page-top"><h2>Event Information</h2></div><div class="info-grid">
+        <div class="info-card"><div class="info-icon">📍</div><h3>Venue</h3><p>Brimak Hotel, Utawala<br>Opposite Amani Stage</p></div>
+        <div class="info-card"><div class="info-icon">📅</div><h3>Date</h3><p>July 18, 2026<br>Gates 6:00 PM</p></div>
+        <div class="info-card"><div class="info-icon">🔞</div><h3>Age</h3><p>18+ Only<br>ID Required</p></div>
+        <div class="info-card"><div class="info-icon">🎫</div><h3>Tickets</h3><p>Regular KSH 500<br>VIP KSH 1,000<br>VVIP KSH 3,000-5,000</p></div>
+        <div class="info-card"><div class="info-icon">📱</div><h3>Payment</h3><p>M-PESA STK Push<br>Paystack</p></div>
+        <div class="info-card"><div class="info-icon">🎵</div><h3>By</h3><p>Wakabu Sounds<br>and Events</p></div>
+    </div></section>
 
     <!-- CONTACT -->
     <section class="section" id="page-contact"><div class="page-top"><h2>Contact</h2></div><div class="contact-card"><div class="contact-icon">💬</div><h3>WhatsApp Support</h3><p class="contact-phone">0794 346 184</p><a href="https://wa.me/254794346184" target="_blank" class="btn btn-primary" style="display:inline-flex;margin:0.5rem">💬 Chat Now</a><div class="pochi-box" style="margin-top:0.8rem">📱 Pochi La Biashara<span class="pochi-number">0794 346 184</span></div></div></section>
@@ -315,7 +356,8 @@
 
     <script>
         // ==================== CONFIGURATION ====================
-        const PAYSTACK_PUBLIC_KEY = 'pk_live_2eaf48bdf8353562ecd5346d8354f45d0c764501';
+        // UPDATED Paystack Credentials
+        const PAYSTACK_PUBLIC_KEY = 'pk_live_d6b855fdc0f696978818694e852e3fc5f4a1617b';
         const STKPUSH_URL = 'https://pquehgwrmblcddbsoiwb.supabase.co/functions/v1/lipana-stk';
         const PAYSTACK_INITIALIZE_URL = 'https://pquehgwrmblcddbsoiwb.supabase.co/functions/v1/paystack-initialize';
         const PAYMENT_STATUS_URL = 'https://pquehgwrmblcddbsoiwb.supabase.co/functions/v1/paystack-verify';
@@ -550,14 +592,24 @@
             document.getElementById('bookingFormSection').scrollIntoView({ behavior: 'smooth' });
         }));
 
-        function updateS() { document.getElementById('sumTotal').textContent = 'KSH ' + ((parseInt(document.getElementById('bQty').value) || 1) * selPrice).toLocaleString(); }
-        function updateS2() { document.getElementById('sumTotal2').textContent = 'KSH ' + ((parseInt(document.getElementById('bQty2').value) || 1) * selPrice).toLocaleString(); }
-        document.getElementById('bTicket').addEventListener('change', function() { if (this.value) { const [n, p] = this.value.split('|');
+        function updateS() { 
+            const qty = parseInt(document.getElementById('bQty').value) || 1;
+            document.getElementById('sumTotal').textContent = 'KSH ' + (qty * selPrice).toLocaleString(); 
+        }
+        function updateS2() { 
+            const qty = parseInt(document.getElementById('bQty2').value) || 1;
+            document.getElementById('sumTotal2').textContent = 'KSH ' + (qty * selPrice).toLocaleString(); 
+        }
+        document.getElementById('bTicket').addEventListener('change', function() { 
+            if (this.value) { const [n, p] = this.value.split('|');
                 selName = n;
-                selPrice = parseInt(p); } updateS(); });
-        document.getElementById('bTicket2').addEventListener('change', function() { if (this.value) { const [n, p] = this.value.split('|');
+                selPrice = parseInt(p); } updateS(); 
+        });
+        document.getElementById('bTicket2').addEventListener('change', function() { 
+            if (this.value) { const [n, p] = this.value.split('|');
                 selName = n;
-                selPrice = parseInt(p); } updateS2(); });
+                selPrice = parseInt(p); } updateS2(); 
+        });
         document.getElementById('bQty').addEventListener('input', updateS);
         document.getElementById('bQty2').addEventListener('input', updateS2);
 
@@ -796,7 +848,6 @@
                 if (data.success && data.access_code) {
                     currentRef = data.reference;
                     
-                    // Open Paystack popup
                     paystackPopup = PaystackPop.setup({
                         key: PAYSTACK_PUBLIC_KEY,
                         email: email,
@@ -805,13 +856,11 @@
                         ref: currentRef,
                         callback: function(response) {
                             console.log('Paystack callback:', response);
-                            // Payment completed, verify status
                             verifyPaymentStatus(currentRef, btn, msg, name, qty, total);
                         },
                         onClose: function() {
                             console.log('Paystack popup closed');
                             if (!isPolling && !timeoutReached) {
-                                // User closed popup without completing
                                 msg.className = 'msg-box show warn';
                                 msg.innerHTML = `
                                     <h3>⚠️ Payment Cancelled</h3>
@@ -835,7 +884,6 @@
                     
                     paystackPopup.openIframe();
                     
-                    // Start polling for payment status
                     msg.innerHTML = `
                         <h3 style="color:#0D5E3A">💳 Paystack Popup Opened</h3>
                         <p>Complete your payment in the popup window.</p>
@@ -900,12 +948,10 @@
                     `;
                     btn.style.display = 'none';
                 } else {
-                    // Still pending, let polling handle it
                     startPolling(ref, btn, msg, name, qty, total);
                 }
             } catch (e) {
                 console.error('Verification error:', e);
-                // Start polling as fallback
                 startPolling(ref, btn, msg, name, qty, total);
             }
         }
@@ -927,7 +973,6 @@
             btn.disabled = true;
             msg.className = 'msg-box show info';
             
-            // Check which payment method is selected
             if (selectedPaymentMethod === 'paystack') {
                 btn.innerHTML = '<span class="spinner"></span> Opening Paystack...';
                 msg.innerHTML = '<span class="spinner"></span> Initializing Paystack...';
@@ -935,7 +980,6 @@
                 return;
             }
 
-            // M-PESA STK Push
             btn.innerHTML = '<span class="spinner"></span> Sending...';
             msg.innerHTML = '<span class="spinner"></span> Initiating M-PESA payment...';
             closeModal();
@@ -1024,7 +1068,6 @@
             );
         });
 
-        // Close modal when clicking outside
         document.getElementById('timeoutModal').addEventListener('click', function(e) {
             if (e.target === this) {
                 closeModal();
@@ -1036,13 +1079,10 @@
             const urlParams = new URLSearchParams(window.location.search);
             const ref = urlParams.get('reference');
             const trxref = urlParams.get('trxref');
-            
-            // Paystack uses 'trxref' as the reference parameter in callback
             const actualRef = ref || trxref;
             
             if (actualRef) {
                 console.log('Payment callback detected:', actualRef);
-                // Show message to user
                 const msgBox = document.getElementById('msgBox') || document.getElementById('msgBox2');
                 msgBox.className = 'msg-box show info';
                 msgBox.innerHTML = `
@@ -1052,7 +1092,6 @@
                     <p style="font-size:0.8rem;color:#666;margin-top:0.5rem;">Please wait while we confirm your payment...</p>
                 `;
                 
-                // Check payment status
                 setTimeout(async () => {
                     try {
                         const res = await fetch(`${PAYMENT_STATUS_URL}?ref=${actualRef}`);
@@ -1096,7 +1135,6 @@
                     }
                 }, 3000);
                 
-                // Clean URL
                 if (window.history && window.history.replaceState) {
                     const cleanUrl = window.location.pathname;
                     window.history.replaceState({}, document.title, cleanUrl);
@@ -1105,6 +1143,9 @@
         }
 
         // ==================== INIT ====================
+        // Set default ticket price
+        selPrice = 500;
+        selName = 'Regular';
         updateS();
         updateS2();
         loadArtists();
