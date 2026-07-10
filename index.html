@@ -149,6 +149,9 @@
         .dev-section .wa-btn{display:inline-flex;align-items:center;gap:0.3rem;background:#25D366;color:white!important;padding:0.4rem 1rem;border-radius:6px;text-decoration:none;font-weight:500;font-size:0.7rem;margin:0.2rem;transition:0.3s}
         .dev-section .wa-btn:hover{transform:translateY(-2px)}
         
+        /* ===== PAYSTACK POPUP OVERRIDE ===== */
+        .paystack-iframe{width:100%!important;max-width:500px!important;margin:0 auto!important}
+        
         @media(max-width:768px){
             .hero h1{font-size:2.2rem}
             .pricing{grid-template-columns:1fr}
@@ -342,13 +345,15 @@
             // For form 1
             if (method === 'mpesa' || method === 'paystack') {
                 document.querySelectorAll('#bookingFormSection .payment-method').forEach(el => el.classList.remove('selected'));
-                document.querySelector(`#bookingFormSection .payment-method[data-method="${method}"]`)?.classList.add('selected');
+                const el = document.querySelector(`#bookingFormSection .payment-method[data-method="${method}"]`);
+                if (el) el.classList.add('selected');
                 selectedPaymentMethod = method;
                 
                 const btn = document.getElementById('payBtn');
                 if (method === 'mpesa') {
                     btn.innerHTML = '📱 Pay via M-PESA';
                     btn.className = 'btn-pay';
+                    btn.style.background = '';
                 } else {
                     btn.innerHTML = '💳 Pay with Paystack';
                     btn.className = 'btn-pay';
@@ -359,12 +364,14 @@
             // For form 2
             if (method === 'mpesa2' || method === 'paystack2') {
                 document.querySelectorAll('#page-book .payment-method').forEach(el => el.classList.remove('selected'));
-                document.querySelector(`#page-book .payment-method[data-method="${method}"]`)?.classList.add('selected');
+                const el = document.querySelector(`#page-book .payment-method[data-method="${method}"]`);
+                if (el) el.classList.add('selected');
                 
                 const btn = document.getElementById('payBtn2');
                 if (method === 'mpesa2') {
                     btn.innerHTML = '📱 Pay via M-PESA';
                     btn.className = 'btn-pay';
+                    btn.style.background = '';
                     selectedPaymentMethod = 'mpesa';
                 } else {
                     btn.innerHTML = '💳 Pay with Paystack';
@@ -793,7 +800,7 @@
                     paystackPopup = PaystackPop.setup({
                         key: PAYSTACK_PUBLIC_KEY,
                         email: email,
-                        amount: total * 100, // Paystack expects kobo
+                        amount: total * 100,
                         currency: 'KES',
                         ref: currentRef,
                         callback: function(response) {
@@ -1028,63 +1035,67 @@
         function handlePaymentCallback() {
             const urlParams = new URLSearchParams(window.location.search);
             const ref = urlParams.get('reference');
-            const status = urlParams.get('status');
+            const trxref = urlParams.get('trxref');
             
-            if (ref) {
-                console.log('Payment callback detected:', ref, status);
+            // Paystack uses 'trxref' as the reference parameter in callback
+            const actualRef = ref || trxref;
+            
+            if (actualRef) {
+                console.log('Payment callback detected:', actualRef);
                 // Show message to user
                 const msgBox = document.getElementById('msgBox') || document.getElementById('msgBox2');
-                if (status === 'success' || status === 'true') {
-                    msgBox.className = 'msg-box show info';
-                    msgBox.innerHTML = `
-                        <h3>🔄 Verifying Payment...</h3>
-                        <p>Reference: <strong>${ref}</strong></p>
-                        <div class="spinner"></div>
-                        <p style="font-size:0.8rem;color:#666;margin-top:0.5rem;">Please wait while we confirm your payment...</p>
-                    `;
-                    
-                    // Check payment status
-                    setTimeout(async () => {
-                        try {
-                            const res = await fetch(`${PAYMENT_STATUS_URL}?ref=${ref}`);
-                            const data = await res.json();
+                msgBox.className = 'msg-box show info';
+                msgBox.innerHTML = `
+                    <h3>🔄 Verifying Payment...</h3>
+                    <p>Reference: <strong>${actualRef}</strong></p>
+                    <div class="spinner"></div>
+                    <p style="font-size:0.8rem;color:#666;margin-top:0.5rem;">Please wait while we confirm your payment...</p>
+                `;
+                
+                // Check payment status
+                setTimeout(async () => {
+                    try {
+                        const res = await fetch(`${PAYMENT_STATUS_URL}?ref=${actualRef}`);
+                        const data = await res.json();
+                        
+                        if (data.isPaid === true || data.status === 'paid') {
+                            const name = data.name || 'Guest';
+                            const ticket = data.ticket || selName || 'Regular';
+                            const qty = data.qty || 1;
+                            const total = data.total || 0;
+                            const phone = data.phone || '';
                             
-                            if (data.isPaid === true || data.status === 'paid') {
-                                const name = data.name || 'Guest';
-                                const ticket = data.ticket || selName || 'Regular';
-                                const qty = data.qty || 1;
-                                const total = data.total || 0;
-                                const phone = data.phone || '';
-                                
-                                const ticketHTML = showTicketInline(ref, name, ticket, phone, qty, total);
-                                msgBox.className = 'msg-box show ok';
-                                msgBox.innerHTML = `
-                                    <div style="font-size:2.5rem;">✅</div>
-                                    <h3 style="color:#0D5E3A">Payment Successful!</h3>
-                                    <p>Your ticket has been sent to your email.</p>
-                                    ${ticketHTML}
-                                `;
-                            } else {
-                                msgBox.className = 'msg-box show warn';
-                                msgBox.innerHTML = `
-                                    <h3>⏳ Payment Still Processing</h3>
-                                    <p>Your payment is being confirmed. You will receive your ticket shortly.</p>
-                                    <p>Reference: <strong>${ref}</strong></p>
-                                    <p>Pay via Pochi: <strong>0794 346 184</strong></p>
-                                    <button class="btn-retry" onclick="location.href='/'">Go Home</button>
-                                `;
-                            }
-                        } catch (e) {
+                            const ticketHTML = showTicketInline(actualRef, name, ticket, phone, qty, total);
+                            msgBox.className = 'msg-box show ok';
+                            msgBox.innerHTML = `
+                                <div style="font-size:2.5rem;">✅</div>
+                                <h3 style="color:#0D5E3A">Payment Successful!</h3>
+                                <p>Your ticket has been sent to your email.</p>
+                                ${ticketHTML}
+                            `;
+                            const payBtn = document.getElementById('payBtn') || document.getElementById('payBtn2');
+                            if (payBtn) payBtn.style.display = 'none';
+                        } else {
                             msgBox.className = 'msg-box show warn';
                             msgBox.innerHTML = `
-                                <h3>⚠️ Could Not Verify Payment</h3>
-                                <p>Please contact support with your reference: <strong>${ref}</strong></p>
+                                <h3>⏳ Payment Still Processing</h3>
+                                <p>Your payment is being confirmed. You will receive your ticket shortly.</p>
+                                <p>Reference: <strong>${actualRef}</strong></p>
                                 <p>Pay via Pochi: <strong>0794 346 184</strong></p>
                                 <button class="btn-retry" onclick="location.href='/'">Go Home</button>
                             `;
                         }
-                    }, 3000);
-                }
+                    } catch (e) {
+                        msgBox.className = 'msg-box show warn';
+                        msgBox.innerHTML = `
+                            <h3>⚠️ Could Not Verify Payment</h3>
+                            <p>Please contact support with your reference: <strong>${actualRef}</strong></p>
+                            <p>Pay via Pochi: <strong>0794 346 184</strong></p>
+                            <button class="btn-retry" onclick="location.href='/'">Go Home</button>
+                        `;
+                    }
+                }, 3000);
+                
                 // Clean URL
                 if (window.history && window.history.replaceState) {
                     const cleanUrl = window.location.pathname;
